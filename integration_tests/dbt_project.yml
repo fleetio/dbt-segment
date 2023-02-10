@@ -7,7 +7,7 @@ seed-paths: ["seeds"]
 profile: 'integration_tests'
 
 vars:
-  dbt-segment:
+  dbt_segment:
     segment_page_views_table: "{{ ref('example_segment_pages') }}"
 
 seeds:
