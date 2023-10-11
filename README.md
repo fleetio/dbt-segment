@@ -12,6 +12,18 @@ New to dbt packages? Read more about them [here](https://docs.getdbt.com/docs/bu
 2. Run `dbt deps`
 3. Include the following in your `dbt_project.yml` directly within your `vars:` block (making sure to handle indenting appropriately). **Update the value to point to your segment page views table**.
 
+### Option 1 (Sessionize pageviews from a single source)
+```YAML
+# dbt_project.yml
+config-version: 2
+...
+
+vars:
+  dbt_segment:
+    segment_page_views_table: "{{ source('segment', 'pages') }}"
+
+```
+OR
 ```YAML
 # dbt_project.yml
 config-version: 2
@@ -20,9 +32,23 @@ config-version: 2
 vars:
   dbt_segment:
     segment_page_views_table:
-      - segment_pages
+      - upstream_model_with_formatted_pageview_data
 
 ```
+### Option 2 (Sessionize pageviews from multiple sources, only accepts model names--no source data)
+```YAML
+# dbt_project.yml
+config-version: 2
+...
+
+vars:
+  dbt_segment:
+    segment_page_views_table:
+      - segment_marketing_site_page_views
+      - segment_web_app_page_views
+
+```
+
 This package assumes that your data is in a structure similar to the test
 file included in [example_segment_pages](integration_tests/seeds/example_segment_pages.csv).
 You may have to do some pre-processing in an upstream model to get it into this shape.
