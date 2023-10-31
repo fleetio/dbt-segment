@@ -82,14 +82,16 @@ vars:
 the package to run successfully.
 6. Execute `dbt run` – the Segment models will get built as part of your run!
 
-## Helpful Notes
-As of October 2023, this package supports the ability to sessionize data from multiple Segment data sources. If you're listing more than Segment data source in the `segment_page_views_table` variable, you'll need to indicate which `source_name` you wish to reference when querying any of the models.
+## Using Multiple Segment Data Sources
+As of November 2023, this package supports the ability to sessionize data from multiple Segment data sources. If you're listing more than Segment data source in the `segment_page_views_table` variable, you'll need to indicate which `source_name` you wish to reference when querying any of the models.
 
 For example:
 ```
 select * from segment_web_page_views where source_name = 'segment_marketing_site_pages'
 select * from segment_web_sessions where source_name = 'segment_web_app_pages'
 ```
+
+Additionally, if the Segment tables you're using don't have the same column count/order, you will need to do some re-factoring in an upstream model to get them into a format where they can be unioned together.
 
 ## Database support
 This package should work with Redshift, BigQuery, and Postgres. However, it is only being tested for compatibility with Snowflake.
