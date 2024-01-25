@@ -7,7 +7,7 @@ The if statement below checks to see if segment_page_views_table is a string or 
 {% if var('segment_page_views_table') is string %}
     
     unioned_sources AS (
-        select 'segment_page_views_table' as source_name, * from {{var('segment_page_views_table')}}
+        select cast('segment_page_views_table' as text) as source_name, * from {{var('segment_page_views_table')}}
     ),
 
 
