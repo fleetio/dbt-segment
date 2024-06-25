@@ -7,7 +7,7 @@ The if statement below checks to see if segment_page_views_table is a string or 
 {% if var('segment_page_views_table') is string %}
     
     unioned_sources AS (
-        select cast('segment_page_views_table' as text) as source_name, * from {{var('segment_page_views_table')}}
+        select {{ dbt.safe_cast("'segment_page_views_table'", api.Column.translate_type("string")) }} as source_name, * from {{var('segment_page_views_table')}}
     ),
 
 
