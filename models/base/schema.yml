@@ -5,6 +5,6 @@ models:
     description: "{{doc('segment_web_page_views')}}"
     columns:
       - name: page_view_id
-        tests:
+        data_tests:
           - unique
           - not_null

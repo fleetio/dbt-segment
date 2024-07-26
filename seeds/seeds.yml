@@ -5,14 +5,14 @@ seeds:
     description: "This is a CSV version of Snowplow's [referer parser database](https://github.com/snowplow-referer-parser/referer-parser)"
     columns:
       - name: medium
-        tests:
+        data_tests:
           - not_null
 
       - name: source
-        tests:
+        data_tests:
           - not_null
 
       - name: host
-        tests:
+        data_tests:
           - unique
           - not_null
