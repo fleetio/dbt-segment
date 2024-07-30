@@ -14,6 +14,11 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+# CircleCI config
+flags:
+  send_anonymous_usage_stats: False
+  use_colors: True
+
 vars:
   # location of raw data table
   segment_page_views_table:
